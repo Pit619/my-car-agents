@@ -858,8 +858,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 122
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -868,7 +868,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_AllowMSAA: 1
   m_AllowDynamicResolution: 0
   m_ForceIntoRT: 0
@@ -888,6 +888,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83682097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  graphModel: {fileID: 0}
+  graphScope: 
+  graphPlaceholders: []
+  BatchSizePlaceholderName: batch_size
+  VectorObservationPlacholderName: vector_observation
+  RecurrentInPlaceholderName: recurrent_in
+  RecurrentOutPlaceholderName: recurrent_out
+  VisualObservationPlaceholderName: []
+  ActionPlaceholderName: action
+  PreviousActionPlaceholderName: prev_action
+  brain: {fileID: 233748827}
 --- !u!1 &91280410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1891,7 +1914,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &171133613
+--- !u!114 &154343036
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -1899,20 +1922,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b23992c8eb17439887f5e944bf04a40, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
   m_EditorClassIdentifier: 
-  broadcast: 1
-  graphModel: {fileID: 0}
-  graphScope: 
-  graphPlaceholders: []
-  BatchSizePlaceholderName: batch_size
-  VectorObservationPlacholderName: vector_observation
-  RecurrentInPlaceholderName: recurrent_in
-  RecurrentOutPlaceholderName: recurrent_out
-  VisualObservationPlaceholderName: []
-  ActionPlaceholderName: action
-  PreviousActionPlaceholderName: prev_action
   brain: {fileID: 233748827}
 --- !u!1 &171435378
 GameObject:
@@ -2069,11 +2081,11 @@ MonoBehaviour:
     vectorObservationSpaceType: 1
   brainType: 0
   CoreBrains:
-  - {fileID: 1943200756}
-  - {fileID: 1611169176}
-  - {fileID: 245525641}
-  - {fileID: 171133613}
-  instanceID: 27620
+  - {fileID: 940270951}
+  - {fileID: 1930067016}
+  - {fileID: 154343036}
+  - {fileID: 83682097}
+  instanceID: 11382
 --- !u!1 &245268903
 GameObject:
   m_ObjectHideFlags: 0
@@ -2084,6 +2096,7 @@ GameObject:
   m_Component:
   - component: {fileID: 245268904}
   - component: {fileID: 245268906}
+  - component: {fileID: 245268905}
   m_Layer: 0
   m_Name: Sensor
   m_TagString: Untagged
@@ -2106,6 +2119,21 @@ Transform:
   m_Father: {fileID: 1079013191}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &245268905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 245268903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6ed0a28f3c68b479efef80482c135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerToSense:
+    serializedVersion: 2
+    m_Bits: 256
+  Cross: {fileID: 638598742}
 --- !u!212 &245268906
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2151,18 +2179,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &245525641
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35813a1be64e144f887d7d5f15b963fa, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  brain: {fileID: 233748827}
 --- !u!1 &254190685
 GameObject:
   m_ObjectHideFlags: 0
@@ -8818,6 +8834,36 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &940270951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  continuousPlayerActions:
+  - key: 119
+    index: 0
+    value: 1
+  - key: 115
+    index: 0
+    value: -1
+  - key: 97
+    index: 1
+    value: -1
+  - key: 100
+    index: 1
+    value: 1
+  discretePlayerActions:
+  - key: 97
+    value: 2
+  defaultAction: 0
+  brain: {fileID: 233748827}
 --- !u!1 &943468940
 GameObject:
   m_ObjectHideFlags: 0
@@ -15736,19 +15782,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1611169176
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  brain: {fileID: 0}
 --- !u!1 &1615430983
 GameObject:
   m_ObjectHideFlags: 0
@@ -16978,6 +17011,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1687106155}
   - component: {fileID: 1687106157}
+  - component: {fileID: 1687106156}
   m_Layer: 0
   m_Name: Sensor (3)
   m_TagString: Untagged
@@ -17000,6 +17034,21 @@ Transform:
   m_Father: {fileID: 1079013191}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1687106156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1687106154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6ed0a28f3c68b479efef80482c135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerToSense:
+    serializedVersion: 2
+    m_Bits: 256
+  Cross: {fileID: 1756782990}
 --- !u!212 &1687106157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -19636,6 +19685,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1884472207}
   - component: {fileID: 1884472209}
+  - component: {fileID: 1884472208}
   m_Layer: 0
   m_Name: Sensor (2)
   m_TagString: Untagged
@@ -19658,6 +19708,21 @@ Transform:
   m_Father: {fileID: 1079013191}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1884472208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1884472206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6ed0a28f3c68b479efef80482c135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerToSense:
+    serializedVersion: 2
+    m_Bits: 256
+  Cross: {fileID: 1685949921}
 --- !u!212 &1884472209
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20500,6 +20565,19 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
+--- !u!114 &1930067016
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 943466ab374444748a364f9d6c3e2fe2, type: 3}
+  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
+  m_EditorClassIdentifier: 
+  broadcast: 1
+  brain: {fileID: 0}
 --- !u!1 &1941443188
 GameObject:
   m_ObjectHideFlags: 0
@@ -20510,6 +20588,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941443189}
   - component: {fileID: 1941443191}
+  - component: {fileID: 1941443190}
   m_Layer: 0
   m_Name: Sensor (4)
   m_TagString: Untagged
@@ -20532,6 +20611,21 @@ Transform:
   m_Father: {fileID: 1079013191}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1941443190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1941443188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6ed0a28f3c68b479efef80482c135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerToSense:
+    serializedVersion: 2
+    m_Bits: 256
+  Cross: {fileID: 1137332787}
 --- !u!212 &1941443191
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -20577,36 +20671,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
---- !u!114 &1943200756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e9bda8f3cf1492fa74926a530f6f70, type: 3}
-  m_Name: (Clone)(Clone)(Clone)(Clone)(Clone)(Clone)(Clone)
-  m_EditorClassIdentifier: 
-  broadcast: 1
-  continuousPlayerActions:
-  - key: 119
-    index: 0
-    value: 1
-  - key: 115
-    index: 0
-    value: -1
-  - key: 97
-    index: 1
-    value: -1
-  - key: 100
-    index: 1
-    value: 1
-  discretePlayerActions:
-  - key: 97
-    value: 2
-  defaultAction: 0
-  brain: {fileID: 233748827}
 --- !u!1 &1960250217
 GameObject:
   m_ObjectHideFlags: 0
@@ -21291,6 +21355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2046623577}
   - component: {fileID: 2046623579}
+  - component: {fileID: 2046623578}
   m_Layer: 0
   m_Name: Sensor (1)
   m_TagString: Untagged
@@ -21313,6 +21378,21 @@ Transform:
   m_Father: {fileID: 1079013191}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2046623578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2046623576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c6ed0a28f3c68b479efef80482c135c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  LayerToSense:
+    serializedVersion: 2
+    m_Bits: 256
+  Cross: {fileID: 669412274}
 --- !u!212 &2046623579
 SpriteRenderer:
   m_ObjectHideFlags: 0

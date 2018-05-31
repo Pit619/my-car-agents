@@ -10,6 +10,13 @@ public class MyCarAgent : Agent {
 	/// </summary>
 	public event System.Action HitWall;
 
+	public Sensor Sensor1;
+	public Sensor Sensor2;
+	public Sensor Sensor3;
+	public Sensor Sensor4;
+	public Sensor Sensor5;
+	public GameObject car;
+
 	//Movement constants
 	private const float MAX_VEL = 20f;
 	private const float ACCELERATION = 8f;
@@ -18,8 +25,6 @@ public class MyCarAgent : Agent {
 
 	//Input
 	private double engineForceInput, turningForceInput;
-
-	//private CarController controller;
 
 	/// <summary>
 	/// The current velocity of the car.
@@ -38,28 +43,6 @@ public class MyCarAgent : Agent {
 		get;
 		private set;
 	}
-
-	/// <summary>
-	/// The current inputs for turning and engine force in this order.
-	/// </summary>
-	//public double[] CurrentInputs
-	//{
-	//	get { return new double[] { horizontalInput, verticalInput }; }
-	//}
-
-	// Unity method for physics updates
-	//void FixedUpdate ()
-	//{
-		//Get user input if controller tells us to
-		//if (controller != null && controller.UseUserInput)
-		//	CheckInput();
-	
-		//ApplyInput();
-	
-		//ApplyVelocity();
-	
-		//ApplyFriction();
-	//}
 
 	// Applies the current velocity to the position of the car.
 	private void ApplyVelocity()
@@ -90,77 +73,12 @@ public class MyCarAgent : Agent {
 			}
 		}
 	}
-	/*
-	// Checks for user input
-	//private void CheckInput()
-	//{
-	//	horizontalInput = Input.GetAxis("Horizontal");
-	//	verticalInput = Input.GetAxis("Vertical");
-	//}
-
-	// Applies the currently set input
-	private void ApplyInput()
-	{
-		//Cap input 
-		if (verticalInput > 1)
-			verticalInput = 1;
-		else if (verticalInput < -1)
-			verticalInput = -1;
-
-		if (horizontalInput > 1)
-			horizontalInput = 1;
-		else if (horizontalInput < -1)
-			horizontalInput = -1;
-
-		//Car can only accelerate further if velocity is lower than engineForce * MAX_VEL
-		bool canAccelerate = false;
-		if (verticalInput < 0)
-			canAccelerate = Velocity > verticalInput * MAX_VEL;
-		else if (verticalInput > 0)
-			canAccelerate = Velocity < verticalInput * MAX_VEL;
-
-		//Set velocity
-		if (canAccelerate)
-		{
-			Velocity += (float)verticalInput * ACCELERATION * Time.deltaTime;
-
-			//Cap velocity
-			if (Velocity > MAX_VEL)
-				Velocity = MAX_VEL;
-			else if (Velocity < -MAX_VEL)
-				Velocity = -MAX_VEL;
-		}
-
-		//Set rotation
-		Rotation = transform.rotation;
-		Rotation *= Quaternion.AngleAxis((float)-horizontalInput * TURN_SPEED * Time.deltaTime, new Vector3(0, 0, 1));
-	}
-
-	/// <summary>
-	/// Sets the engine and turning input according to the given values.
-	/// </summary>
-	/// <param name="input">The inputs for turning and engine force in this order.</param>
-	//public void SetInputs(double[] input)
-	//{
-	//	horizontalInput = input[0];
-	//	verticalInput = input[1];
-	//}
-
-	// Unity method, triggered when collision was detected.
-	void OnCollisionEnter2D()
-	{
-		if (HitWall != null)
-			HitWall();
-	}
-
-	#endregion
-*/
 	
-	public GameObject car;
+
 
 	void Start()
 	{
-		//controller = GetComponent<CarController>();
+		
 	}
 
 	public override void AgentAction(float[] action, string textAction)
@@ -216,7 +134,18 @@ public class MyCarAgent : Agent {
 	public override void CollectObservations()
 	{
 		List<float> state = new List<float>();
+		state.Add (Sensor1.Output);
+		state.Add (Sensor2.Output);
+		state.Add (Sensor3.Output);
+		state.Add (Sensor4.Output);
+		state.Add (Sensor5.Output);
+	}
 
+	// Unity method, triggered when collision was detected.
+	void OnCollisionEnter2D()
+	{
+		if (HitWall != null)
+			HitWall();
 	}
 
 	public override void AgentReset()
