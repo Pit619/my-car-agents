@@ -7,9 +7,7 @@ public class MyCarAcademy : Academy {
 	// Use this for initialization
 	public override void AcademyReset()
 	{
-		this.cars.Clear ();
-		this.cars.Add (new RaceCar(myTestCar, 1));
-
+		myTestCar.CheckpointIndex = 1;
 		//Get all checkpoints
 		checkpoints = GetComponentsInChildren<MyCheckpoint>();
 
@@ -20,11 +18,13 @@ public class MyCarAcademy : Academy {
 	public override void AcademyStep()
 	{
 		//Update reward for each enabled car on the track
-		for (int i = 0; i < cars.Count; i++)
-		{
-			RaceCar car = cars[i];
-			car.Car.SetReward(GetCompletePerc(car.Car, ref car.CheckpointIndex));
-		}
+		//for (int i = 0; i < cars.Count; i++)
+		//{
+		//	RaceCar car = cars[i];
+		//	car.Car.SetReward(GetCompletePerc(car.Car, ref car.CheckpointIndex));
+		//}
+		myTestCar.SetReward(GetCompletePerc(myTestCar, ref myTestCar.CheckpointIndex));
+		Debug.Log (myTestCar.GetReward ());
 	}
 
 	public static MyCarAcademy Instance

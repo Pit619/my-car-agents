@@ -40,6 +40,8 @@ public class MyCarAgent : Agent {
 		private set;
 	}
 
+	public uint CheckpointIndex;
+
 	/// <summary>
 	/// The current rotation of the car.
 	/// </summary>
@@ -81,6 +83,7 @@ public class MyCarAgent : Agent {
 
 	void Start()
 	{
+		CheckpointIndex = 1;
 		carStartPosition = car.transform.position;
 		carStartDirection = car.transform.rotation;
 		HitWall += AgentReset;
@@ -156,6 +159,7 @@ public class MyCarAgent : Agent {
 
 	public override void AgentReset()
 	{
+		CheckpointIndex = 1;
 		Velocity = 0;
 		car.transform.position = carStartPosition;
 		car.transform.rotation = carStartDirection;
