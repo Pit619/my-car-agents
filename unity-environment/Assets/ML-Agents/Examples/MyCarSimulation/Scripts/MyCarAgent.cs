@@ -17,6 +17,9 @@ public class MyCarAgent : Agent {
 	public Sensor Sensor5;
 	public GameObject car;
 
+	Vector3 carStartPosition;
+	Quaternion carStartDirection;
+
 	//Movement constants
 	private const float MAX_VEL = 20f;
 	private const float ACCELERATION = 8f;
@@ -73,12 +76,12 @@ public class MyCarAgent : Agent {
 			}
 		}
 	}
-	
-
 
 	void Start()
 	{
-		
+		carStartPosition = car.transform.position;
+		carStartDirection = car.transform.rotation;
+		HitWall += AgentReset;
 	}
 
 	public override void AgentAction(float[] action, string textAction)
@@ -134,11 +137,11 @@ public class MyCarAgent : Agent {
 	public override void CollectObservations()
 	{
 		List<float> state = new List<float>();
-		state.Add (Sensor1.Output);
-		state.Add (Sensor2.Output);
-		state.Add (Sensor3.Output);
-		state.Add (Sensor4.Output);
-		state.Add (Sensor5.Output);
+		AddVectorObs(Sensor1.Output);
+		AddVectorObs(Sensor2.Output);
+		AddVectorObs(Sensor3.Output);
+		AddVectorObs(Sensor4.Output);
+		AddVectorObs(Sensor5.Output);
 	}
 
 	// Unity method, triggered when collision was detected.
@@ -150,6 +153,8 @@ public class MyCarAgent : Agent {
 
 	public override void AgentReset()
 	{
-		
+		Velocity = 0;
+		car.transform.position = carStartPosition;
+		car.transform.rotation = carStartDirection;
 	}
 }
