@@ -26,6 +26,8 @@ public class MyCarAgent : Agent {
 	private const float VEL_FRICT = 2f;
 	private const float TURN_SPEED = 100;
 
+	private float timeSinceLastCheckpoint;
+
 	//Input
 	private double engineForceInput, turningForceInput;
 
@@ -147,6 +149,7 @@ public class MyCarAgent : Agent {
 	// Unity method, triggered when collision was detected.
 	void OnCollisionEnter2D()
 	{
+		SetReward(0);
 		if (HitWall != null)
 			HitWall();
 	}
@@ -156,5 +159,16 @@ public class MyCarAgent : Agent {
 		Velocity = 0;
 		car.transform.position = carStartPosition;
 		car.transform.rotation = carStartDirection;
+	}
+		
+	//This method can be used to remove the agent from the scene.
+	public override void AgentOnDone()
+	{
+		
+	}
+
+	public void CheckpointCaptured()
+	{
+		timeSinceLastCheckpoint = 0;
 	}
 }
