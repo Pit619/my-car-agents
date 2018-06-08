@@ -31,6 +31,9 @@ public class MyCarAgent : Agent {
 	//Input
 	private double engineForceInput, turningForceInput;
 
+	// Maximum delay in seconds between the collection of two checkpoints until this car dies.
+	private const float MAX_CHECKPOINT_DELAY = 7;
+
 	/// <summary>
 	/// The current velocity of the car.
 	/// </summary>
@@ -86,7 +89,7 @@ public class MyCarAgent : Agent {
 		CheckpointIndex = 1;
 		carStartPosition = car.transform.position;
 		carStartDirection = car.transform.rotation;
-		HitWall += AgentReset;
+		HitWall += Done;
 	}
 
 	public override void AgentAction(float[] action, string textAction)
@@ -137,6 +140,13 @@ public class MyCarAgent : Agent {
 
 		//this.transform.rotation *= Quaternion.AngleAxis((float)-turningForceInput * TURN_SPEED * Time.deltaTime, new Vector3(0, 0, 1));
 		ApplyFriction();
+
+		timeSinceLastCheckpoint += Time.deltaTime;
+
+		if (timeSinceLastCheckpoint > MAX_CHECKPOINT_DELAY)
+		{
+			Done();
+		}
 	}
 
 	public override void CollectObservations()
@@ -152,13 +162,13 @@ public class MyCarAgent : Agent {
 	// Unity method, triggered when collision was detected.
 	void OnCollisionEnter2D()
 	{
-		SetReward(0);
 		if (HitWall != null)
 			HitWall();
 	}
 
 	public override void AgentReset()
 	{
+		timeSinceLastCheckpoint = 0;
 		CheckpointIndex = 1;
 		Velocity = 0;
 		car.transform.position = carStartPosition;
