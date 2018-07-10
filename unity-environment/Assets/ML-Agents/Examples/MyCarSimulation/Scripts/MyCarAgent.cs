@@ -147,6 +147,9 @@ public class MyCarAgent : Agent {
 		{
 			Done();
 		}
+		if (GetReward() == 1) {
+			Done();
+		}
 	}
 
 	public override void CollectObservations()
